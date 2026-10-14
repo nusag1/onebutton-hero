@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>ワンボタン勇者</title>
+<meta name="description" content="タップだけで冒険する、スマホ向けワンボタンアクション">
+<meta name="theme-color" content="#8fd3ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ワンボタン勇者">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="cv" aria-label="ゲーム画面"></canvas>
+
+  <div id="bar">
+    <button id="btn-pause" aria-label="一時停止">⏸</button>
+    <button id="btn-se" aria-label="効果音">🔊</button>
+    <button id="btn-bgm" aria-label="BGM">🎵</button>
+  </div>
+
+  <div id="title-panel" hidden>
+    <button class="pill" id="btn-shop-title">🛒 ショップ <span class="coin-count"></span></button>
+    <button class="pill ghost" id="btn-help">？ 遊び方</button>
+  </div>
+
+  <div id="help" class="overlay" hidden>
+    <div class="card">
+      <h2>遊び方</h2>
+      <ol>
+        <li>勇者ユウは<b>自動で走る</b></li>
+        <li>地上で<b>タップ → ジャンプ</b></li>
+        <li>空中で<b>タップ → 急降下斬り</b>！</li>
+        <li>敵は<b>上から踏む</b>か急降下で倒せる。急降下ならコイン2倍</li>
+        <li>トゲ・穴・敵の横当たりに注意。ハートが0で終了</li>
+        <li>集めたコインで<b>ショップ</b>で強化しよう</li>
+      </ol>
+      <button class="primary" id="btn-help-close">冒険に出る！</button>
+    </div>
+  </div>
+
+  <div id="result" class="overlay" hidden>
+    <div class="card">
+      <h2 id="result-title">ユウは倒れた…</h2>
+      <p class="big"><span id="result-dist">0</span><small>m</small></p>
+      <p class="record" id="result-record" hidden>🎉 最高記録！</p>
+      <div class="stats">
+        <div><span>コイン</span><b id="result-coins">0</b></div>
+        <div><span>倒した敵</span><b id="result-kills">0</b></div>
+        <div><span>最高記録</span><b id="result-best">0m</b></div>
+      </div>
+      <div class="row">
+        <button class="secondary" id="btn-shop-result">🛒 ショップ</button>
+        <button class="primary" id="btn-again">もう一度</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="shop" class="overlay" hidden>
+    <div class="card shop-card">
+      <div class="shop-head">
+        <h2>ショップ</h2>
+        <span class="wallet">🪙 <b class="coin-count"></b></span>
+      </div>
+      <ul id="shop-list"></ul>
+      <button class="primary" id="btn-shop-close">とじる</button>
+    </div>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
